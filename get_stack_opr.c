@@ -18,7 +18,7 @@ void (*get_stack_opt(char *p))(stack_t **stack, unsigned int line_number)
 		if (p[j] == lst[i].opcode[j])
 		{
 			if (p[j] == '\0')
-				return (push_stack);
+				return (lst[i].f);
 			else
 				++j;
 		}

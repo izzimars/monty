@@ -21,15 +21,19 @@ void push_stack(stack_t **stack, unsigned int line_number)
 	new_node->n = push_value;
 	if (cur_lst == NULL)
 	{
+		printf("I am here push new node\n");
 		new_node->next = NULL;
 		new_node->prev = NULL;
 		cur_lst = new_node;
+		*stack = new_node;
 	}
 	else
 	{
+		printf("I am here push old node\n");
 		new_node->next = cur_lst;
 		cur_lst->prev = new_node;
 		cur_lst = new_node;
+		*stack = new_node;
 	}
 }
 
@@ -48,11 +52,16 @@ void pall_stack(stack_t **stack, unsigned int line_number)
 	char p;
 
 	(void )line_number;
-	cur_lst = *stack;
+	cur_lst = *stack;	
+	printf("I am here pall\n");
 	if (cur_lst == NULL)
+	{
+		printf("why I am here pall\n");
 		return;
+	}
 	while (cur_lst)
 	{
+		printf("why I am not here pall\n");
 		p = '0' + cur_lst->n;
 		printf("%c\n", p);
 		cur_lst = cur_lst->next;
