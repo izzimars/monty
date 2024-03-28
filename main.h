@@ -42,5 +42,6 @@ void (*get_stack_opt(char *p))(stack_t **stack, unsigned int line_number);
 void error_stack(char *s);
 void push_stack(stack_t **stack, unsigned int line_number);
 void pall_stack(stack_t **stack, unsigned int line_number);
+char *str_concat(int i, char *fori);
 
 #endif

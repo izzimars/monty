@@ -2,8 +2,8 @@
 
 /**
  * get_stack_opt- returns the amount of identifiers.
- * @s: argument indentifier
- * @index: index of argument identifier.
+ * @p: argument indentifier
+ *
  * Return: amount of identifiers.
  */
 void (*get_stack_opt(char *p))(stack_t **stack, unsigned int line_number)
@@ -19,8 +19,7 @@ void (*get_stack_opt(char *p))(stack_t **stack, unsigned int line_number)
 		{
 			if (p[j] == '\0')
 				return (lst[i].f);
-			else
-				++j;
+			++j;
 		}
 		else
 		{
@@ -28,5 +27,5 @@ void (*get_stack_opt(char *p))(stack_t **stack, unsigned int line_number)
 			j = 0;
 		}
 	}
-	return NULL;
+	return (NULL);
 }

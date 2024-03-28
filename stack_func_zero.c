@@ -6,14 +6,14 @@
  *
  * @stack: the stack containing integers
  * @line_number: The current file line being processed.
- * 
+ *
  * Return: None
  */
 void push_stack(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node, (*cur_lst);
 
-	(void )line_number;
+	(void)line_number;
 	cur_lst = *stack;
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
@@ -21,7 +21,6 @@ void push_stack(stack_t **stack, unsigned int line_number)
 	new_node->n = push_value;
 	if (cur_lst == NULL)
 	{
-		printf("I am here push new node\n");
 		new_node->next = NULL;
 		new_node->prev = NULL;
 		cur_lst = new_node;
@@ -29,7 +28,6 @@ void push_stack(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		printf("I am here push old node\n");
 		new_node->next = cur_lst;
 		cur_lst->prev = new_node;
 		cur_lst = new_node;
@@ -43,7 +41,7 @@ void push_stack(stack_t **stack, unsigned int line_number)
  *
  * @stack: the stack containing integers
  * @line_number: The current file line being processed.
- * 
+ *
  * Return: None
  */
 void pall_stack(stack_t **stack, unsigned int line_number)
@@ -51,17 +49,12 @@ void pall_stack(stack_t **stack, unsigned int line_number)
 	stack_t *cur_lst;
 	char p;
 
-	(void )line_number;
-	cur_lst = *stack;	
-	printf("I am here pall\n");
+	(void)line_number;
+	cur_lst = *stack;
 	if (cur_lst == NULL)
-	{
-		printf("why I am here pall\n");
 		return;
-	}
 	while (cur_lst)
 	{
-		printf("why I am not here pall\n");
 		p = '0' + cur_lst->n;
 		printf("%c\n", p);
 		cur_lst = cur_lst->next;
