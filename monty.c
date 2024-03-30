@@ -11,13 +11,12 @@
 int main(int argc, char *arg[])
 {
 	int i = 1, n = 500;
-	char *str, (*token), (*opcode);
+	char *str, *token[2];
 	char lineptr[100] = {0};
 	FILE *stream;
 	void (*stack_function)(stack_t **, unsigned int);
 	stack_t *lst = NULL;
 
-	token = NULL;
 	if (argc != 2)
 		error_stack("USAGE: monty file");
 	stream = fopen(arg[1], "r");
@@ -28,15 +27,18 @@ int main(int argc, char *arg[])
 	}
 	while (fgets(lineptr, n, stream) != NULL)
 	{
-		str = strtok(lineptr, " $");
-		opcode = str;
-		token = strtok(NULL, " $");
-		if (token != NULL)
-			push_value = atoi(token);
-		stack_function = get_stack_opt(str);
+		line_arr(lineptr, token);
+		if (token[1] != NULL)
+			push_value = atoi(token[1]);
+		if (token[0] == NULL)
+		{
+			i++;
+			continue;
+		}
+		stack_function = get_stack_opt(token[0]);
 		if (stack_function == NULL)
 		{
-			str = str_concat(i, opcode);
+			str = str_concat(i, token[0]);
 			error_stack(str);
 		}
 		else

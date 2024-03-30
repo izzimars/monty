@@ -10,7 +10,6 @@
 void error_stack(char *s)
 {
 	write(2, s, strlen(s));
-	write(1, "\n", 1);
 	exit(EXIT_FAILURE);
 }
 
@@ -24,13 +23,45 @@ void error_stack(char *s)
  */
 char *str_concat(int i, char *fori)
 {
-	char p;
-	char *str;
+	char *result;
+	char p = '0' + i;
+	char str[100];
 
-	p = '0' + i;
-	str = strcat("L", &p);
-	str = strcat(str, ": unknown instruction ");
-	str = strcat(str, fori);
-	return (str);
+	str[0] = '\0';
+	strcat(str, "L");
+	strncat(str, &p, 1);
+	strcat(str, ": unknown instruction ");
+	strcat(str, fori);
+	result = malloc(strlen(str) + 1);
+	if (result == NULL)
+		return NULL;
+	strcpy(result, str);
+	return (result);
 }
 
+/**
+ * line_arr - Prints our error to the standard output.
+ * Description: Function that push a int to a stack.
+ * @p: a char[], error message.
+ *
+ * Return: array.
+ */
+void line_arr(char *str, char **strarr)
+{
+	int i = 0;
+
+        strarr[0] = NULL;
+	str = strtok(str, " \n$");
+	while(str != NULL)
+	{
+		strarr[i] = malloc(strlen(str) + 1);
+		if (strarr[i] == NULL)
+			error_stack("Error: malloc failed\n");
+		strcpy(strarr[i], str);
+		i++;
+		if (i == 2)
+			return;
+		str = strtok(NULL, " \n$");
+	}
+	strarr[1] = NULL;
+}

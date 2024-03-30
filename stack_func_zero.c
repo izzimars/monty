@@ -60,3 +60,60 @@ void pall_stack(stack_t **stack, unsigned int line_number)
 		cur_lst = cur_lst->next;
 	}
 }
+
+/**
+ * pint_stack - opcode and its function
+ * Description: Function that push a int to a stack.
+ *
+ * @stack: the stack containing integers
+ * @line_number: The current file line being processed.
+ *
+ * Return: None
+ */
+void pint_stack(stack_t **stack, unsigned int line_number)
+{
+	char p;
+	stack_t *cur_lst;
+
+	(void)line_number;
+	cur_lst = *stack;
+	if (cur_lst == NULL)
+		return;
+	p = '0'+ cur_lst->n;
+	printf("%c\n", p);
+}
+
+/**
+ * pop_stack - opcode and its function
+ * Description: Function that push a int to a stack.
+ *
+ * @stack: the stack containing integers
+ * @line_number: The current file line being processed.
+ *
+ * Return: None
+ */
+void pop_stack(stack_t **stack, unsigned int line_number)
+{
+	stack_t *cur_lst;
+	char str[50];
+
+	(void)line_number;
+	cur_lst = *stack;
+	if (cur_lst == NULL)
+	{
+		str[0] = 'L';
+		sprintf(str + 1, "%d", line_number);
+		strcat(str, ": can't pop an empty stack\n");
+		error_stack(str);
+	}
+	while (cur_lst->prev != NULL)
+		cur_lst = cur_lst->prev;
+	if (cur_lst->next == NULL)
+		*stack = NULL;
+	else
+	{
+		*stack = cur_lst->next;
+		(*stack)->prev = NULL;
+	}
+	free(cur_lst);
+}
