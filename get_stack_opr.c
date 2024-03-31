@@ -17,6 +17,9 @@ void (*get_stack_opt(char *p))(stack_t **stack, unsigned int line_number)
 		{"add", padd_stack},
 		{"sub", psub_stack},
 		{"div", pdiv_stack},
+		{"mul", pmul_stack},
+		{"mod", pmod_stack},
+		{"pchar", pchar_stack},
 		{"nop", pnop_stack},
 		{NULL, NULL}
 	};

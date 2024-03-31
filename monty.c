@@ -30,7 +30,7 @@ int main(int argc, char *arg[])
 		line_arr(lineptr, token);
 		if (token[1] != NULL)
 			push_value = atoi(token[1]);
-		if (token[0] == NULL)
+		if (token[0] == NULL || token[0][0] == '#')
 		{
 			i++;
 			continue;
