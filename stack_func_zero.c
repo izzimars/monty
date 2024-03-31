@@ -47,7 +47,6 @@ void push_stack(stack_t **stack, unsigned int line_number)
 void pall_stack(stack_t **stack, unsigned int line_number)
 {
 	stack_t *cur_lst;
-	char p;
 
 	(void)line_number;
 	cur_lst = *stack;
@@ -55,8 +54,7 @@ void pall_stack(stack_t **stack, unsigned int line_number)
 		return;
 	while (cur_lst)
 	{
-		p = '0' + cur_lst->n;
-		printf("%c\n", p);
+		printf("%d\n", cur_lst->n);
 		cur_lst = cur_lst->next;
 	}
 }
@@ -72,15 +70,13 @@ void pall_stack(stack_t **stack, unsigned int line_number)
  */
 void pint_stack(stack_t **stack, unsigned int line_number)
 {
-	char p;
 	stack_t *cur_lst;
 
 	(void)line_number;
 	cur_lst = *stack;
 	if (cur_lst == NULL)
 		return;
-	p = '0'+ cur_lst->n;
-	printf("%c\n", p);
+	printf("%d\n", cur_lst->n);
 }
 
 /**
@@ -115,5 +111,40 @@ void pop_stack(stack_t **stack, unsigned int line_number)
 		*stack = cur_lst->next;
 		(*stack)->prev = NULL;
 	}
+	free(cur_lst);
+}
+/**
+ * padd_stack - opcode and its function
+ * Description: Function that push a int to a stack.
+ *
+ * @stack: the stack containing integers
+ * @line_number: The current file line being processed.
+ *
+ * Return: None
+ */
+void padd_stack(stack_t **stack, unsigned int line_number)
+{
+	stack_t *cur_lst;
+	char str[50];
+	int i =0, sum = 0;
+
+	cur_lst = *stack;
+	while (cur_lst != NULL)
+	{
+		sum += cur_lst->n;
+		i++;
+		if (i == 2)
+			break;
+		cur_lst = cur_lst->next;
+	}
+	if (i != 2)
+	{
+		sprintf(str, "L%d: can't add, stack too short\n", line_number);
+		error_stack(str);
+	}
+	*stack = cur_lst;
+	(*stack)->n = sum;
+	cur_lst = cur_lst->prev;
+	(*stack)->prev = NULL;
 	free(cur_lst);
 }

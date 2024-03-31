@@ -42,7 +42,7 @@ int main(int argc, char *arg[])
 			error_stack(str);
 		}
 		else
-			stack_function(&lst, push_value);
+			stack_function(&lst, i);
 		i++;
 	}
 	if (ferror(stream))

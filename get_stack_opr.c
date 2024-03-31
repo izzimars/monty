@@ -14,6 +14,8 @@ void (*get_stack_opt(char *p))(stack_t **stack, unsigned int line_number)
 		{"pall", pall_stack},
 		{"pint", pint_stack},
 		{"pop", pop_stack},
+		{"add", padd_stack},
+		{"nop", pnop_stack},
 		{NULL, NULL}
 	};
 	while (lst[i].opcode)
