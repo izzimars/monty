@@ -45,6 +45,7 @@ void pall_stack(stack_t **stack, unsigned int line_number);
 void pint_stack(stack_t **stack, unsigned int line_number);
 void pop_stack(stack_t **stack, unsigned int line_number);
 void padd_stack(stack_t **stack, unsigned int line_number);
+void psub_stack(stack_t **stack, unsigned int line_number);
 void pnop_stack(stack_t **stack, unsigned int line_number);
 char *str_concat(int i, char *fori);
 void line_arr(char *str,char **strarr);
